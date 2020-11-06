@@ -5,15 +5,15 @@ parameters:
     type: boolean
     default: false
     description: >
-      Run all steps individually, or all together (using "up"), bundling 
+      Run all steps individually, or all together (using "up"), bundling
       together the output.
 
 steps:
-  - when: 
+  - when:
       condition: <<parameters.bundle_steps>>
       steps:
         - run: waypoint up
-  - unless: 
+  - unless:
       condition: <<parameters.bundle_steps>>
       steps:
         - run: waypoint build

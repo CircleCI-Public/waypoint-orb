@@ -14,6 +14,6 @@ steps:
         curl -q -O /tmp/waypoint.zip https://releases.hashicorp.com/waypoint/<<parameters.version>>/waypoint_<<parameters.version>>_linux_amd64.zip
         sudo unzip -d /usr/local/bin /tmp/waypoint.zip
         rm -rf /tmp/waypoint.zip
-  - run: 
+  - run:
       name: Initialize Waypoint
       command: waypoint init
