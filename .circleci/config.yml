@@ -21,17 +21,23 @@ parameters:
 
 jobs:
   integration-test_full-up:
-    working_directory: ~/examples/docker/nodejs
     executor: waypoint/default
     steps:
-      - run: git clone https://github.com/hashicorp/waypoint-examples ~/examples
+      - run:
+          name: Initalize test repository
+          command: |
+            git clone https://github.com/hashicorp/waypoint-examples ~/examples
+            cp -r ~/examples/docker/nodejs ~/project
       - waypoint/init
       - waypoint/up
   integration-test_full-up-bundled:
-    working_directory: ~/examples/docker/nodejs
     executor: waypoint/default
     steps:
-      - run: git clone https://github.com/hashicorp/waypoint-examples
+      - run:
+          name: Initalize test repository
+          command: |
+            git clone https://github.com/hashicorp/waypoint-examples ~/examples
+            cp -r ~/examples/docker/nodejs ~/project
       - waypoint/init
       - waypoint/up:
           bundle_steps: true
