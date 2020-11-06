@@ -1,0 +1,21 @@
+description: Build, deploy and release your project.
+
+parameters:
+  bundle_steps:
+    type: boolean
+    default: false
+    description: >
+      Run all steps individually, or all together (using "up"), bundling 
+      together the output.
+
+steps:
+  - when: 
+      condition: <<parameters.bundle_steps>>
+      steps:
+        - run: waypoint up
+  - unless: 
+      condition: <<parameters.bundle_steps>>
+      steps:
+        - run: waypoint build
+        - run: waypoint deploy
+        - run: waypoint release

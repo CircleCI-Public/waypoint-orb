@@ -1,11 +1,11 @@
-description: >
-  This is a sample executor using Docker and Node.
-docker:
-  - image: 'cimg/node:<<parameters.tag>>'
+description: |
+  Default image to be used with this orb.
 parameters:
   tag:
-    default: lts
-    description: >
-      Pick a specific circleci/node image variant:
-      https://hub.docker.com/r/cimg/node/tags
     type: string
+    default: "2020.11"
+    description: >
+      Pick a specific cimg/base tag:
+      https://circleci.com/developer/images/image/cimg/base
+docker:
+  - image: cimg/base:<<parameters.tag>>

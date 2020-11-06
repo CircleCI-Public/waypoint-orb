@@ -1,0 +1,11 @@
+description: |
+  A basic workflow to deploy your project using waypoint.
+usage:
+  version: 2.1
+  orbs:
+    waypoing: circleci/waypoint@x.y # This version number refers to the version of the orb, not the version of NodeJS
+
+  workflows:
+    deploy_using_waypoint:
+      jobs:
+        - waypoint/deploy

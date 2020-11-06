@@ -1,0 +1,6 @@
+description: Destroy a Waypoint project
+
+steps:
+  - run:
+      name: Destroy Waypoint app
+      command: waypoint destroy

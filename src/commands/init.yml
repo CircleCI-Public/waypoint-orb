@@ -1,0 +1,19 @@
+description: Install and initialize Waypoint
+
+parameters:
+  version:
+    description: Version of the waypoint binary to download
+    type: string
+    default: "0.1.4"
+
+steps:
+  - setup_remote_docker
+  - run:
+      name: Install Waypoint
+      command: |
+        curl -q -O /tmp/waypoint.zip https://releases.hashicorp.com/waypoint/<<parameters.version>>/waypoint_<<parameters.version>>_linux_amd64.zip
+        sudo unzip -d /usr/local/bin /tmp/waypoint.zip
+        rm -rf /tmp/waypoint.zip
+  - run: 
+      name: Initialize Waypoint
+      command: waypoint init

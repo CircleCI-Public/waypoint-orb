@@ -1,0 +1,18 @@
+description: |
+  Simple job to automatically deploy your application using Waypoint.
+
+parameters:
+  setup:
+    type: steps
+    default: []
+    description: Steps to take before initializing Waypoint and deploying the site.
+
+executor:
+  name: default
+  tag: << parameters.version >>
+
+steps:
+  - checkout
+  - steps: << parameters.setup >>
+  - init
+  - up
