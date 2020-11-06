@@ -22,16 +22,14 @@ parameters:
 jobs:
   integration-test_full-up:
     working_directory: ~/examples/docker/nodejs
-    docker:
-      - image: waypoint/default
+    executor: waypoint/default
     steps:
       - run: git clone https://github.com/hashicorp/waypoint-examples ~/examples
       - waypoint/init
       - waypoint/up
   integration-test_full-up-bundled:
     working_directory: ~/examples/docker/nodejs
-    docker:
-      - image: waypoint/default
+    executor: waypoint/default
     steps:
       - run: git clone https://github.com/hashicorp/waypoint-examples
       - waypoint/init
