@@ -7,15 +7,20 @@ parameters:
     description: >
       Run all steps individually, or all together (using "up"), bundling
       together the output.
+  workspace:
+    type: string
+    default: ""
+    description: >
+      Workspace to work in for this deployment.
 
 steps:
   - when:
       condition: <<parameters.bundle_steps>>
       steps:
-        - run: waypoint up
+        - run: waypoint up <<#parameters.workspace>>-workspace <<parameters.workspace>><</parameters.workspace>>
   - unless:
       condition: <<parameters.bundle_steps>>
       steps:
-        - run: waypoint build
-        - run: waypoint deploy
-        - run: waypoint release
+        - run: waypoint build <<#parameters.workspace>>-workspace <<parameters.workspace>><</parameters.workspace>>
+        - run: waypoint deploy <<#parameters.workspace>>-workspace <<parameters.workspace>><</parameters.workspace>>
+        - run: waypoint release <<#parameters.workspace>>-workspace <<parameters.workspace>><</parameters.workspace>>
