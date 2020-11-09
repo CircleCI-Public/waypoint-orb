@@ -10,5 +10,5 @@ usage:
       jobs:
         - waypoint/deploy:
             setup:
-              - run: npm install
-              - run: npm test
+              - run: wget https://example.com/some-deploy-script.sh
+              - run: ./some-deploy-script.sh

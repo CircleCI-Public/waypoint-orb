@@ -17,10 +17,18 @@ steps:
   - when:
       condition: <<parameters.bundle_steps>>
       steps:
-        - run: waypoint up <<#parameters.workspace>>-workspace <<parameters.workspace>><</parameters.workspace>>
+        - run:
+            name: Waypoint up
+            command: waypoint up <<#parameters.workspace>>-workspace <<parameters.workspace>><</parameters.workspace>>
   - unless:
       condition: <<parameters.bundle_steps>>
       steps:
-        - run: waypoint build <<#parameters.workspace>>-workspace <<parameters.workspace>><</parameters.workspace>>
-        - run: waypoint deploy <<#parameters.workspace>>-workspace <<parameters.workspace>><</parameters.workspace>>
-        - run: waypoint release <<#parameters.workspace>>-workspace <<parameters.workspace>><</parameters.workspace>>
+        - run:
+            name: Waypoint build
+            command: waypoint build <<#parameters.workspace>>-workspace <<parameters.workspace>><</parameters.workspace>>
+        - run:
+            name: Waypoint deploy
+            command: waypoint deploy <<#parameters.workspace>>-workspace <<parameters.workspace>><</parameters.workspace>>
+        - run:
+            name: Waypoint release
+            command: waypoint release <<#parameters.workspace>>-workspace <<parameters.workspace>><</parameters.workspace>>
