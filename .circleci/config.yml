@@ -49,13 +49,12 @@ workflows:
   test-pack:
     unless: << pipeline.parameters.run-integration-tests >>
     jobs:
-      - orb-tools/lint # Lint Yaml files
-      - orb-tools/pack # Pack orb source
+      - orb-tools/lint
+      - orb-tools/pack
 
-      # Publish development version(s) of the orb.
       - orb-tools/publish-dev:
           orb-name: circleci/waypoint
-          context: orb-publishing # A restricted context containing your private publishing credentials. Will only execute if approved by an authorized user.
+          context: orb-publishing
           requires:
             - orb-tools/lint
             - orb-tools/pack
@@ -73,9 +72,10 @@ workflows:
       - orb-tools/dev-promote-prod-from-commit-subject:
           orb-name: circleci/waypoint
           context: orb-publishing
-          add-pr-comment: false
+          add-pr-comment: true
           fail-if-semver-not-indicated: true
-          publish-version-tag: false
+          ssh-fingerprints: a9:22:bd:dd:d7:a3:79:c4:8f:3e:dd:5e:97:4a:8e:aa
+          publish-version-tag: true
           requires:
             - integration-test_full-up
             - integration-test_full-up-bundled

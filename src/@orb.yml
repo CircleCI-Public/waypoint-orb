@@ -3,7 +3,6 @@ version: 2.1
 description: >
   Utilize Hashicorp's Waypoint within your CircleCI jobs!
 
-# This information will be displayed in the orb registry and is not mandatory.
 display:
-  home_url: "https://www.waypointproject.io/"
+  home_url: "https://www.waypointproject.io"
   source_url: "https://github.com/CircleCI-Public/waypoint-orb"
