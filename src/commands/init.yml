@@ -5,6 +5,11 @@ parameters:
     description: Version of the waypoint binary to download
     type: string
     default: "0.1.4"
+  workspace:
+    type: string
+    default: ""
+    description: >
+      Workspace to work in for this deployment.
 
 steps:
   - setup_remote_docker
@@ -16,4 +21,4 @@ steps:
         rm -rf /tmp/waypoint.zip
   - run:
       name: Initialize Waypoint
-      command: waypoint init
+      command: waypoint init <<#parameters.workspace>>-workspace <<parameters.workspace>><</parameters.workspace>>

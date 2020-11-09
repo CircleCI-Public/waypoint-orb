@@ -1,6 +1,13 @@
 description: Destroy a Waypoint project
 
+parameters:
+  workspace:
+    type: string
+    default: ""
+    description: >
+      Workspace to work in for this deployment.
+
 steps:
   - run:
       name: Destroy Waypoint app
-      command: waypoint destroy
+      command: waypoint destroy <<#parameters.workspace>>-workspace <<parameters.workspace>><</parameters.workspace>>

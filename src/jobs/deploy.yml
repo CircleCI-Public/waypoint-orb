@@ -10,6 +10,11 @@ parameters:
     type: string
     default: "2020.11"
     description: Version of the cimg/base Docker image to use.
+  workspace:
+    type: string
+    default: ""
+    description: >
+      Workspace to work in for this deployment.
 
 executor:
   name: default
@@ -18,5 +23,7 @@ executor:
 steps:
   - checkout
   - steps: << parameters.setup >>
-  - init
-  - up
+  - init:
+      workspace: <<parameters.workspace>>
+  - up:
+      workspace: <<parameters.workspace>>
