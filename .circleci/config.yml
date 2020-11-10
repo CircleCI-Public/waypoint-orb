@@ -21,7 +21,8 @@ parameters:
 
 jobs:
   integration-test_full-up:
-    executor: waypoint/default
+    docker:
+      - image: cimg/base:stable
     steps:
       - run:
           name: Initalize test repository
@@ -33,7 +34,8 @@ jobs:
       - waypoint/destroy
 
   integration-test_full-up-bundled:
-    executor: waypoint/default
+    docker:
+      - image: cimg/base:stable
     steps:
       - run:
           name: Initalize test repository
