@@ -6,19 +6,18 @@ parameters:
     type: steps
     default: []
     description: Steps to take before initializing Waypoint and deploying the site.
-  version:
+  image:
     type: string
-    default: "2020.11"
-    description: Version of the cimg/base Docker image to use.
+    default: "cimg/base:2020.11"
+    description: Docker image in which this job should execute.
   workspace:
     type: string
     default: ""
     description: >
       Workspace to work in for this deployment.
 
-executor:
-  name: default
-  tag: << parameters.version >>
+docker:
+  - image: <<parameters.image>>
 
 steps:
   - checkout
