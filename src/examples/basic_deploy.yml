@@ -1,0 +1,11 @@
+description: |
+  A basic workflow to deploy your project using waypoint.
+usage:
+  version: 2.1
+  orbs:
+    waypoint: circleci/waypoint@x.y
+
+  workflows:
+    deploy_using_waypoint:
+      jobs:
+        - waypoint/deploy

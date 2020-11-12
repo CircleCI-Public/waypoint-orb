@@ -1,0 +1,34 @@
+description: Build, deploy and release your project.
+
+parameters:
+  bundle_steps:
+    type: boolean
+    default: false
+    description: >
+      Run all steps individually, or all together (using "up"), bundling
+      together the output.
+  workspace:
+    type: string
+    default: ""
+    description: >
+      Workspace to work in for this deployment.
+
+steps:
+  - when:
+      condition: <<parameters.bundle_steps>>
+      steps:
+        - run:
+            name: Waypoint up
+            command: waypoint up <<#parameters.workspace>>-workspace <<parameters.workspace>><</parameters.workspace>>
+  - unless:
+      condition: <<parameters.bundle_steps>>
+      steps:
+        - run:
+            name: Waypoint build
+            command: waypoint build <<#parameters.workspace>>-workspace <<parameters.workspace>><</parameters.workspace>>
+        - run:
+            name: Waypoint deploy
+            command: waypoint deploy <<#parameters.workspace>>-workspace <<parameters.workspace>><</parameters.workspace>>
+        - run:
+            name: Waypoint release
+            command: waypoint release <<#parameters.workspace>>-workspace <<parameters.workspace>><</parameters.workspace>>

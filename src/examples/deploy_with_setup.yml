@@ -1,0 +1,14 @@
+description: |
+  A workflow to deploy your project using waypoint, with setup steps.
+usage:
+  version: 2.1
+  orbs:
+    waypoint: circleci/waypoint@x.y
+
+  workflows:
+    deploy_using_waypoint:
+      jobs:
+        - waypoint/deploy:
+            setup:
+              - run: wget https://example.com/some-deploy-script.sh
+              - run: ./some-deploy-script.sh
